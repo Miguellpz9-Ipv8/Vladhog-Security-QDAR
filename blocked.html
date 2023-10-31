@@ -5,6 +5,34 @@
     <title>This domain was blocked by Vladhog Security</title>
 </head>
 <body>
-    <h1 align="center">This domain is malicious</h1>
+    <h1 align="center" id="blocked-message">This domain is malicious</h1>
+    
+    <script>
+        const userLanguage = window.navigator.userLanguage || window.navigator.language;
+        const supportedLanguages = ["en", "es", "fr", "ru", "it", "ar"];
+
+        function updateContent(language) {
+            const messages = {
+                "en": "This domain is malicious",
+                "es": "Este dominio es malicioso",
+                "fr": "Ce domaine est malveillant",
+                "ru": "Этот домен злонамеренный",
+                "it": "Questo dominio è maligno",
+                "ar": "هذا المجال خبيث"
+            };
+
+            const blockedMessage = document.getElementById("blocked-message");
+            if (messages[language]) {
+                blockedMessage.textContent = messages[language];
+            } else {
+                blockedMessage.textContent = messages["en"];
+            }
+        }
+        if (supportedLanguages.includes(userLanguage)) {
+            updateContent(userLanguage);
+        } else {
+            updateContent("en"); // Default to English for unsupported languages
+        }
+    </script>
 </body>
 </html>
