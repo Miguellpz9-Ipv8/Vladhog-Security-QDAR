@@ -9,7 +9,7 @@ from win32com.client import Dispatch
 import netifaces
 from vladhog_filetype import VDF
 
-# Get the local IP address
+# Get local IP
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(("8.8.8.8", 80))
 local_ip = s.getsockname()[0]
