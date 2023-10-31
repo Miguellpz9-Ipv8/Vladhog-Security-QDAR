@@ -32,7 +32,7 @@ def create_shortcut(file_name, target, work_dir, arguments=''):
 def get_engine_status():
     return any(p.name() == "qdar.exe" for p in psutil.process_iter())
 
-def change_dns_server(state):
+def change_protection_state(state):
     global interface
     for i in netifaces.interfaces():
         try:
