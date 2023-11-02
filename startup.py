@@ -4,6 +4,9 @@ import random
 import traceback
 import argparse
 import shutil
+import win32api
+import win32event
+import winerror
 
 from winreg import OpenKey, HKEY_CURRENT_USER, KEY_WOW64_64KEY, KEY_READ, EnumValue
 import psutil
@@ -16,6 +19,12 @@ import ctypes
 import sys
 
 from utils import logger, create_shortcut, is_admin, change_protection_state
+
+mutex = win32event.CreateMutex(None, 1, "startup.exe")
+
+if win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:
+    print("Another instance is already running.")
+    exit(0)
 
 dir_path = "C:\\Program Files (x86)\\Vladhog Security QDAR\\"
 
